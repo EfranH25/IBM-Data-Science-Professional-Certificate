@@ -1,0 +1,79 @@
+if (ctx?.mobile_extension!=null) 
+{
+    def ext = ctx.mobile_extension;
+    def cont = ctx.country;
+    ctx["mismatch_mobile_country"] = "False";
+
+    def e_1 = ['86', '852'];
+    def e_2 = ['7', '375', '380', '985'];
+    def e_3 = ['48'];
+    def e_4 = ['886'];
+
+    def c_1 = ['China', 'Hong Kong'];
+    def c_2 = ['Belarus', 'Russia', 'Ukraine'];
+    def c_3 = ['Poland'];
+    def c_4 = ['Taiwan'];
+
+    if (e_1.contains(ext) && !c_1.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";} 
+    else if (e_2.contains(ext) && !c_2.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";}
+    else if (e_3.contains(ext) && !c_3.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";}  
+    else if (e_4.contains(ext) && c_4.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";}    
+}
+
+-----------------------------------------------------------------------
+if (ctx?.mobile_extension!=null) 
+{
+    def ext = ctx.mobile_extension;
+    def cont = ctx.country;
+    ctx["mismatch_mobile_country"] = "False";
+
+    def e_1 = ['86', '852'];
+    def e_2 = ['7', '375', '380', '985'];
+    def e_3 = ['48'];
+    def e_4 = ['886'];
+
+    def c_1 = ['China', 'Hong Kong'];
+    def c_2 = ['Belarus', 'Russia', 'Ukraine'];
+    def c_3 = ['Poland'];
+    def c_4 = ['Taiwan'];
+
+    if (e_1.contains(ext) && !c_1.contains(cont)) {
+        ctx["mismatch_mobile_country"] = "True";} 
+    else if (e_2.contains(ext) && !c_2.contains(cont)) {
+        ctx["mismatch_mobile_country"] = "True";}
+    else if (e_3.contains(ext) && !c_3.contains(cont)) {
+        ctx["mismatch_mobile_country"] = "True";}  
+    else if (e_4.contains(ext) && c_4.contains(cont)) {
+        ctx["mismatch_mobile_country"] = "True";}    
+}
+-----------------------------------------------------------------------
+def ext = ctx.mobile_extension;
+def cont = ctx.country;
+ctx["mismatch_mobile_country"] = "False";
+
+def e_1 = ['86', '852'];
+def e_2 = ['7', '375', '380', '985'];
+def e_3 = ['48'];
+def e_4 = ['886'];
+
+def c_1 = ['China', 'Hong Kong'];
+def c_2 = ['Belarus', 'Russia', 'Ukraine'];
+def c_3 = ['Poland'];
+def c_4 = ['Taiwan'];
+
+if (e_1.contains(ext) && !c_1.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";} 
+else if (e_2.contains(ext) && !c_2.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";}
+else if (e_3.contains(ext) && !c_3.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";}  
+else if (e_4.contains(ext) && c_4.contains(cont) == false) {
+      ctx["mismatch_mobile_country"] = "True";}    
+else if (e_4.contains(ext)) {
+        ctx["mismatch_mobile_country"] = "True";}
+else {
+        ctx["mismatch_mobile_country"] = "IDK";}
