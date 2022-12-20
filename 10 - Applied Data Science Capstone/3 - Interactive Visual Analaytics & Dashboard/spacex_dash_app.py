@@ -50,9 +50,12 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
               Input(component_id='site-dropdown', component_property='value'))
 def get_pie_chart(entered_site):
     filtered_df = spacex_df
+    filtered_df['class2'] = filtered_df['class'].apply(
+        lambda x: 'success' if x == 1 else 'failure')
+    
     if entered_site == 'ALL':
         filtered_df = spacex_df
-        fig = px.pie(filtered_df, values='class', 
+        fig = px.pie(filtered_df, values='class',
                      names='Launch Site',
         title='Total Success Launches by Site')
         return fig
@@ -60,28 +63,28 @@ def get_pie_chart(entered_site):
         if entered_site == 'CCAFS LC-40':
             filtered_df = filtered_df[filtered_df['Launch Site'] == 'CCAFS LC-40']
             fig = px.pie(filtered_df,
-                         names='class',
+                         names='class2',
                          title='Total Successful Launches for Site CCAFS LC-40')
             return fig
         if entered_site == 'VAFB SLC-4E':
             filtered_df = filtered_df[filtered_df['Launch Site']
                                       == 'VAFB SLC-4E']
             fig = px.pie(filtered_df,
-                         names='class',
+                         names='class2',
                          title='Total Successful Launches for Site VAFB SLC-4E')
             return fig
         if entered_site == 'KSC LC-39A':
             filtered_df = filtered_df[filtered_df['Launch Site']
                                       == 'KSC LC-39A']
             fig = px.pie(filtered_df, 
-                         names='class',
+                         names='class2',
                          title='Total Successful Launches for Site KSC LC-39A')
             return fig
         if entered_site == 'CCAFS SLC-40':
             filtered_df = filtered_df[filtered_df['Launch Site']
                                       == 'CCAFS SLC-40']
             fig = px.pie(filtered_df, 
-                         names='class',
+                         names='class2',
                          title='Total Successful Launches for Site CCAFS SLC-40')
             return fig
         
@@ -93,13 +96,14 @@ def get_pie_chart(entered_site):
 def get_payload_scatter_chart(entered_site, slider_range):
     filtered_df = spacex_df
     low, high = slider_range
+    filtered_df['class2'] = filtered_df['class'].apply(lambda x: 'success' if x == 1 else 'failure')
     
     filtered_df = filtered_df[(filtered_df['Payload Mass (kg)'] >= low) & (
         filtered_df['Payload Mass (kg)'] <= high)]
     
     if entered_site == 'ALL':
         fig = px.scatter(filtered_df, x='Payload Mass (kg)',
-                 y='class', color="Booster Version Category",
+                 y='class2', color="Booster Version Category",
                  title='Correlation between Payload and Success for All Sites')
         return fig
     else:
@@ -107,28 +111,28 @@ def get_payload_scatter_chart(entered_site, slider_range):
             filtered_df = filtered_df[filtered_df['Launch Site']
                                       == 'CCAFS LC-40']
             fig = px.scatter(filtered_df, x='Payload Mass (kg)',
-                             y='class', color="Booster Version Category",
+                             y='class2', color="Booster Version Category",
                              title='Correlation between Payload and Success for Site CCAFS LC-40')
             return fig
         if entered_site == 'VAFB SLC-4E':
             filtered_df = filtered_df[filtered_df['Launch Site']
                                       == 'VAFB SLC-4E']
             fig = px.scatter(filtered_df, x='Payload Mass (kg)',
-                             y='class', color="Booster Version Category",
+                             y='class2', color="Booster Version Category",
                              title='Correlation between Payload and Success for Site VAFB SLC-4E')
             return fig
         if entered_site == 'KSC LC-39A':
             filtered_df = filtered_df[filtered_df['Launch Site']
                                       == 'KSC LC-39A']
             fig = px.scatter(filtered_df, x='Payload Mass (kg)',
-                             y='class', color="Booster Version Category",
+                             y='class2', color="Booster Version Category",
                              title='Correlation between Payload and Success for Site KSC LC-39A')
             return fig
         if entered_site == 'CCAFS SLC-40':
             filtered_df = filtered_df[filtered_df['Launch Site']
                                       == 'CCAFS SLC-40']
             fig = px.scatter(filtered_df, x='Payload Mass (kg)',
-                             y='class', color="Booster Version Category",
+                             y='class2', color="Booster Version Category",
                              title='Correlation between Payload and Success for Site CCAFS SLC-40')
             return fig
 
